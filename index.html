@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smart Notes · Hybrid AI</title>
+<style>
+  :root { --bg:#f6f7fb; --card:#fff; --ink:#1c2030; --muted:#6b7285; --brand:#4f46e5; --danger:#dc2626; --line:#e4e7f0; --ok:#0f766e; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+  main { max-width:680px; margin:0 auto; padding:24px 16px 64px; }
+  h1 { margin:0; font-size:28px; }
+  .sub { margin:4px 0 12px; color:var(--muted); }
+  .status { margin:0 0 16px; padding:10px 12px; border-radius:8px; font-size:14px; }
+  .status.ok { background:#ecfdf5; color:var(--ok); }
+  .status.demo { background:#fffbeb; color:#92400e; }
+  form, li { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px; }
+  label { display:block; font-weight:600; margin:10px 0 4px; }
+  input, textarea, select { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:8px; font:inherit; background:#fff; color:inherit; }
+  textarea { resize:vertical; }
+  button { font:inherit; border:0; border-radius:8px; padding:9px 14px; cursor:pointer; background:var(--brand); color:#fff; }
+  button:disabled { opacity:.6; cursor:default; }
+  button.ghost { background:transparent; color:var(--ink); border:1px solid var(--line); }
+  button.danger { background:transparent; color:var(--danger); border:1px solid var(--line); }
+  #save { margin-top:12px; }
+  #error { color:var(--danger); margin:8px 0 0; font-weight:600; }
+  .toolbar { display:flex; gap:12px; align-items:center; margin:20px 0 10px; flex-wrap:wrap; }
+  .toolbar input { flex:1; min-width:160px; }
+  .toolbar select { width:auto; }
+  #count { color:var(--muted); white-space:nowrap; }
+  ul { list-style:none; margin:0; padding:0; display:grid; gap:12px; }
+  li h3 { margin:0 0 4px; font-size:18px; }
+  li p.body { margin:0 0 8px; white-space:pre-wrap; }
+  .meta { color:var(--muted); font-size:14px; margin-bottom:10px; }
+  .actions { display:flex; gap:8px; flex-wrap:wrap; }
+  .busy { margin-top:10px; color:var(--muted); font-size:14px; }
+  .result { margin-top:12px; padding:10px 12px; background:#eef2ff; border-radius:8px; }
+  .result-text { white-space:pre-wrap; }
+  .badge { display:inline-block; margin-left:8px; padding:1px 8px; border-radius:999px; background:var(--brand); color:#fff; font-size:12px; white-space:nowrap; }
+  .badge-device { background:#0f766e; }
+  .badge-cloud { background:#2563eb; }
+  .badge-local { background:#6b7285; }
+  .warn { margin-top:6px; color:var(--muted); font-size:13px; }
+  #empty { text-align:center; color:var(--muted); padding:24px 0; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Smart Notes</h1>
+  <p class="sub">Write notes. Get summaries and action items, on-device or in the cloud.</p>
+  <p id="status" class="status" role="status"></p>
+
+  <form id="note-form" novalidate>
+    <label for="title">Title</label>
+    <input id="title" name="title" maxlength="80" autocomplete="off">
+    <label for="body">Note</label>
+    <textarea id="body" name="body" rows="5"></textarea>
+    <p id="error" role="alert" hidden></p>
+    <button type="submit" id="save">Save note</button>
+  </form>
+
+  <div class="toolbar">
+    <input id="search" type="search" placeholder="Search notes" aria-label="Search notes">
+    <select id="ai-mode" aria-label="AI mode">
+      <option value="auto">AI: Auto (short on-device, long cloud)</option>
+      <option value="device">AI: Prefer on-device</option>
+      <option value="cloud">AI: Always cloud</option>
+    </select>
+    <span id="count"></span>
+  </div>
+
+  <ul id="notes"></ul>
+  <p id="empty">No notes yet</p>
+</main>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
