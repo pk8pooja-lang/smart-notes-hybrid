@@ -69,6 +69,7 @@ test/ai.test.js        unit tests
 ## What was built for this hackathon
 
 This is a new repository. Its starting point was a small local-only notes app (add, search, delete, and an offline extractive summary). Everything that uses Firebase AI Logic is new: the hybrid on-device and cloud routing, `inferenceSource` badges, on-device model download handling, App Check, action items, AI mode selector, fallback handling and tests.
+The Firebase web config in src/firebase-config.js is public by design.
 
 ## License
 
