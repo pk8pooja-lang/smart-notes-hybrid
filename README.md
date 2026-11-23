@@ -53,7 +53,7 @@ npm run build   # production build into dist/
 
 ### Gemini Nano in Chrome
 
-On-device inference needs a recent desktop Chrome (Gemini Nano is built in, no flag needed on current versions) and a device that meets Chrome's hardware requirements. The model downloads on first use. On devices that cannot run it (for example, a low performance class laptop), the app automatically uses the cloud model, which is the point of hybrid. This was tested on such a device, so the demo video shows the cloud path.
+On-device inference needs desktop Chrome with Gemini Nano (built in, no flag needed on current versions) and a device that meets Chrome's hardware requirements. The first on-device request starts the model download (triggered by a user click), and until it finishes the SDK answers from the cloud. After that, short notes are summarized fully on the device. If Gemini Nano is not available, the app uses the cloud model automatically. This was tested on desktop Chrome 157 on Windows.
 
 ## Project layout
 
